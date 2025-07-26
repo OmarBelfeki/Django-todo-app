@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+</head>
+<body >
+    <div style="margin-left: 30%">
+        <h1>My To-Do List</h1>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="title" placeholder="Add new Task" required>
+            <button type="submit">Add</button>
+        </form>
+        <ul>
+            {% for task in tasks %}
+                <li>
+                    <form action="{% url 'toggle_task' task.id %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" style="border:none;background:none;cursor:pointer;">
+                            {% if task.completed %}
+                                ✅
+                            {% else %}
+                                ⬜
+                            {% endif %}
+
+                        </button>
+                    </form>
+                    <span style="{% if task.completed %}text-decoration: line-through;{% endif %}">
+                        {{ task.title }}
+                    </span>
+                    <a href="{% url 'delete_task' task.id %}">🗑️</a>
+
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
