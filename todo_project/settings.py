@@ -23,9 +23,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-t5!rb=*k*(wba5h0!1l@y)(u!_!^&t8+_&2qs77-ixw!*#f2x4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = [
+    "https://django-todo-app-a7rb.onrender.com",
+]
+
+ALLOWED_HOSTS = ["django-todo-app-a7rb.onrender.com"]
 
 
 # Application definition
